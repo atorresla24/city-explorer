@@ -5,6 +5,7 @@ import axios from 'axios';
 import Image from 'react-bootstrap/Image';
 import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Weather from './Weather';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +17,8 @@ class App extends React.Component {
       lon: '',
       error: false,
       errorMessage: '',
-      map: ''
+      map: '',
+      weatherData: []
     };
   }
 
@@ -43,6 +45,20 @@ class App extends React.Component {
       errorMessage: `An Error Occurred: {error.response.status}`
     });
   }
+  this.handleWeather();
+  };
+
+  handleWeather = async () => {
+    let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}`
+    try{
+      let weatherData = await axios.get(url)
+      console.log(weatherData.data);
+      this.setState({
+        weatherData: weatherData.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   handleInput = (event) => {
@@ -70,6 +86,9 @@ class App extends React.Component {
       {this.state.error &&
        <Alert variant={'danger'}>{this.state.errorMessage}</Alert>
   }
+  <Weather
+    cityWeather={this.state.weatherData}
+    />
       </html>
     )
   };
