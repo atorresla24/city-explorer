@@ -20,7 +20,7 @@ class App extends React.Component {
       errorMessage: '',
       map: '',
       weatherData: [],
-      movieData: []
+      movieData: [],
     };
   }
 
@@ -45,19 +45,19 @@ class App extends React.Component {
     //console.log(cityInfo.data[0].lat);
   } catch(error) {
     this.setState({
-      error: true, 
+      error: true,
       errorMessage: `An Error Occurred: {error.response.status}`
     });
   }
   };
 
-  handleWeather = async (lat, lon) => {
+   handleWeather = async (lat, lon) => {
     let url = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.city}&lat=${lat}&lon=${lon}`
     try{
       let weatherData = await axios.get(url)
       console.log(weatherData.data);
       this.setState({
-        weatherData: weatherData.data
+        weatherData: weatherData.data,
       });
     } catch (error) {
       console.log(error);
