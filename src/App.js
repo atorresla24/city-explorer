@@ -105,9 +105,9 @@ class App extends React.Component {
   <Weather
     cityWeather={this.state.weatherData}
     />
-    <Movies
-      movie={this.state.movieData}
-      />
+  <Movies
+    movie={this.state.movieData}
+    />
       </html>
     )
   };
