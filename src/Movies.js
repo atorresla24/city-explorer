@@ -1,17 +1,16 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+//import Card from 'react-bootstrap/Card';
+import Movie from './Movie';
 
 class Movies extends React.Component{
   render() {
-    let movieInfo = this.props.movie.map((info, idx) => {
-      return (
-        <Card.Text key={idx}>Movie title: {info.title} Description: {info.description}</Card.Text>
-      )
-    })
+    let movies = <Movie
+    movie = {this.props.movie}
+    />
     return (
-      <Card>
-        {movieInfo}
-      </Card>
+      <>
+      {movies}
+      </>
     )
   }
 }
