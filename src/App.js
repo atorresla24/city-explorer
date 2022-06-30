@@ -65,7 +65,7 @@ class App extends React.Component {
   };
 
   handleMovie = async() => {
-    let url = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.city}`
+    let url = `${process.env.REACT_APP_SERVER}/movies?searchQueryCity=${this.state.city}`
     try{
       let movieData = await axios.get(url)
       console.log(movieData.data);
